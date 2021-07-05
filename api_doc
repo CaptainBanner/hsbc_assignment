@@ -1,0 +1,16 @@
+APIs available:
+
+passing the parameter in url path
+get --> http://127.0.0.1:8000/ip/<ip>/
+get --> http://127.0.0.1:8000/domain/<dns>/
+
+passing the parameter in url params
+get --> http://127.0.0.1:8000/params/?type=ip&data=<ip>
+get --> http://127.0.0.1:8000/params/?type=domain&data=<domain>
+
+Passing the parameter in post bosy
+post --> http://127.0.0.1/validate
+body --> {"ip":"<ip>"}
+
+post --> http://127.0.0.1/validate
+body --> {"domain":"<domain>"}
