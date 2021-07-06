@@ -3,18 +3,29 @@ import requests
 import json
 
 
+def get_urlscan_ind(verdict_api):
+    verdict_api_response = requests.get(verdict_api)
+    verdict_dict = (json.loads(verdict_api_response.text))['verdicts']
+    malicious_ind = False
+    if verdict_dict['overall']['malicious'] or verdict_dict['engines']['maliciousTotal'] or verdict_dict['community']['votesMalicious']:
+        malicious_ind = True
+    return malicious_ind
+
+
 def urlscan(Ip):
     data = {
         "url": Ip,
-        "visibility": "public",
+        "visibility": "private",
         "tags": "malicious"
     }
     headers = {
         'API-Key': 'cbab9d23-7028-4d33-8242-7aebc4019c66',
         'Content-Type': 'application/json'
     }
+
     response = requests.post('https://urlscan.io/api/v1/scan/', headers=headers, data=json.dumps(data))
     return response.json(), response.status_code
+
 
 
 def virusscanip(Ip):
