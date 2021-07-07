@@ -51,7 +51,13 @@ def virusscandomain(Ip):
             malicious = False
     else:
         malicious = 'UNKNOWN'
-    return virus_scan.json(), virus_scan.status_code, malicious
+
+    try:
+        ip = json.loads(virus_scan.text)['data']['attributes']['last_dns_records'][1]['value']
+    except:
+        ip = 'UNKNOWN'
+
+    return virus_scan.json(), virus_scan.status_code, malicious, ip
 
 
 def validate_ip( Ip):

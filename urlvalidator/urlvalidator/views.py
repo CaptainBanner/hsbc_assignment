@@ -19,9 +19,10 @@ def get_domain_report(url_string):
     if validate_domain(url_string):
         final_response = dict()
         final_response['urlscan'] = list(urlscan(url_string))
-        virus_scan, status_code, malicious = virusscandomain(url_string)
+        virus_scan, status_code, malicious, ip = virusscandomain(url_string)
         final_response['virustotal'] = [virus_scan, status_code]
         final_response['malicious'] = malicious
+        final_response['ip'] = ip
         return Response(final_response, status=status.HTTP_200_OK)
 
     return Response(status=status.HTTP_404_NOT_FOUND)
