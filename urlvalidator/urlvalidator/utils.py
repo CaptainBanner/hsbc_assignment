@@ -24,7 +24,7 @@ def urlscan(Ip):
     }
 
     response = requests.post('https://urlscan.io/api/v1/scan/', headers=headers, data=json.dumps(data))
-    mal_ind = json.loads(response.text)['url']
+    mal_ind = get_urlscan_ind(json.loads(response.text)['api'])
     return response.json(), response.status_code
 
 
